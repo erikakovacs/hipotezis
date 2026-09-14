@@ -17,7 +17,7 @@ const after = [
 export function BeforeAfter() {
   return (
     <section className="border-t border-line/80">
-      <div className="space-y-4 py-16 sm:py-20">
+      <div className="mx-auto max-w-6xl space-y-4 px-5 py-16 sm:px-8 sm:py-20">
         <article className="rounded-[1.5rem] bg-cream-deep/80 p-7 ring-1 ring-line sm:p-8">
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-ink-soft">
             Előtte

@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 type HealthTone = "valid" | "expiring" | "expired" | "yes" | "handed";
 
@@ -23,81 +26,122 @@ const packedItems: { label: string; note?: string }[] = [
 ];
 
 export function HeroMockup() {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    function closeProfile(event: PointerEvent) {
+      const details = detailsRef.current;
+
+      if (
+        details?.open &&
+        event.target instanceof Node &&
+        !details.contains(event.target)
+      ) {
+        details.open = false;
+      }
+    }
+
+    document.addEventListener("pointerdown", closeProfile);
+    return () => document.removeEventListener("pointerdown", closeProfile);
+  }, []);
+
   return (
-    <div className="relative mx-auto w-full min-w-0 max-w-md">
-      <div
-        aria-hidden="true"
-        className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(91,127,102,0.18),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(184,92,56,0.16),transparent_50%)]"
-      />
+    <div className="relative mx-auto w-full min-w-0 max-w-md lg:h-[22rem]">
       <details
-        className="group overflow-hidden rounded-[1.6rem] bg-paper shadow-[0_28px_60px_-28px_rgba(44,36,22,0.35)] ring-1 ring-line"
+        ref={detailsRef}
+        className="group overflow-hidden rounded-[1.6rem] bg-paper shadow-[0_16px_40px_-24px_rgba(44,36,22,0.28)] ring-1 ring-line open:shadow-2xl lg:h-[22rem] lg:open:absolute lg:open:inset-x-0 lg:open:top-0 lg:open:z-30 lg:open:h-auto"
       >
-        <summary className="flex cursor-pointer list-none items-center gap-4 p-5 sm:p-6">
-          <div className="relative h-[4.75rem] w-[4.75rem] shrink-0 overflow-hidden rounded-2xl">
-            <Image
-              src="/kutya-panzio/bodri.png"
-              alt="Dzsoki, egy tacskó"
-              fill
-              sizes="76px"
-              className="object-cover"
-              priority
-            />
+        <summary className="cursor-pointer list-none">
+          <div className="flex items-center gap-4 p-5 pb-3 sm:px-6 sm:pt-6">
+            <div className="relative h-[4.75rem] w-[4.75rem] shrink-0 overflow-hidden rounded-2xl">
+              <Image
+                src="/kutya-panzio/bodri.png"
+                alt="Dzsoki, egy tacskó"
+                fill
+                sizes="76px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="min-w-0 flex-1 pt-0.5">
+              <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
+                Vendégprofil
+              </p>
+              <p className="font-serif text-[1.85rem] leading-none tracking-tight text-ink">
+                Dzsoki
+              </p>
+              <p className="mt-1 text-sm text-ink-soft">Tacskó · 4 éves</p>
+              <p className="mt-2 text-xs font-medium text-terracotta group-open:hidden">
+                Kattints a teljes profil megtekintéséhez
+              </p>
+              <p className="mt-2 hidden text-xs font-medium text-terracotta group-open:block">
+                Kattints újra a profil összecsukásához
+              </p>
+            </div>
+            <svg
+              viewBox="0 0 24 24"
+              className="ml-auto h-5 w-5 shrink-0 -rotate-90 text-ink-soft transition-transform group-open:rotate-0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
           </div>
-          <div className="min-w-0 flex-1 pt-0.5">
-            <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-ink-soft">
-              Vendégprofil
-            </p>
-            <p className="font-serif text-[1.85rem] leading-none tracking-tight text-ink">
-              Dzsoki
-            </p>
-            <p className="mt-1 text-sm text-ink-soft">Tacskó · 4 éves</p>
-            <p className="mt-2 text-xs font-medium text-terracotta group-open:hidden">
-              Kattints a teljes profil megtekintéséhez
-            </p>
+
+          <div className="flex flex-wrap gap-2 px-5 pb-3 sm:px-6">
+            <span className="inline-flex items-center gap-2 rounded-full bg-sage-mist px-3 py-1.5 text-sm font-medium text-sage-dark">
+              <span className="h-1.5 w-1.5 rounded-full bg-sage" />
+              Foglalás visszaigazolva
+            </span>
+            <span className="rounded-full bg-cream-deep px-3 py-1.5 text-sm font-medium text-ink">
+              Panzió
+            </span>
+            <span className="rounded-full bg-cream-deep px-3 py-1.5 text-sm font-medium text-ink">
+              Kozmetika
+            </span>
           </div>
-          <svg
-            viewBox="0 0 24 24"
-            className="ml-auto h-5 w-5 shrink-0 -rotate-90 text-ink-soft transition-transform group-open:rotate-0"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+
+          <div className="grid grid-cols-2 gap-4 border-t border-line px-5 py-3.5 sm:px-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Érkezés
+              </p>
+              <p className="mt-1 text-[0.95rem] text-ink">május 12., 9:00</p>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Távozás
+              </p>
+              <p className="mt-1 text-[0.95rem] text-ink">május 18., 17:00</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 border-t border-line px-5 py-3.5 sm:px-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Oltások
+              </p>
+              <span className="mt-1.5 inline-flex items-center gap-2 rounded-full bg-amber-mist px-3 py-1.5 text-sm font-medium text-amber-dark">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber" />
+                1 hamarosan lejár
+              </span>
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Fizetés
+              </p>
+              <div className="mt-1.5">
+                <PaymentStatus status="owing" />
+              </div>
+            </div>
+          </div>
         </summary>
 
-        <div className="flex flex-wrap gap-2 px-5 pb-3 sm:px-6">
-          <span className="inline-flex items-center gap-2 rounded-full bg-sage-mist px-3 py-1.5 text-sm font-medium text-sage-dark">
-            <span className="h-1.5 w-1.5 rounded-full bg-sage" />
-            Foglalás visszaigazolva
-          </span>
-          <span className="rounded-full bg-cream-deep px-3 py-1.5 text-sm font-medium text-ink">
-            Panzió
-          </span>
-          <span className="rounded-full bg-cream-deep px-3 py-1.5 text-sm font-medium text-ink">
-            Kozmetika
-          </span>
-        </div>
-
         <dl className="divide-y divide-line border-t border-line">
-          <div className="grid grid-cols-2 gap-4 px-5 py-4 sm:px-6">
-            <div>
-              <dt className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
-                Érkezés
-              </dt>
-              <dd className="mt-1 text-[0.95rem] text-ink">május 12., 9:00</dd>
-            </div>
-            <div>
-              <dt className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
-                Távozás
-              </dt>
-              <dd className="mt-1 text-[0.95rem] text-ink">május 18., 17:00</dd>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 px-5 py-4 sm:px-6">
+          <div className="grid grid-cols-2 gap-4 px-5 py-3.5 sm:px-6">
             <div>
               <dt className="text-xs font-medium uppercase tracking-[0.12em] text-ink-soft">
                 Gazdi

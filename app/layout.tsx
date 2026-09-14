@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces } from "next/font/google";
+import { Figtree, Merriweather } from "next/font/google";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -8,8 +8,9 @@ const figtree = Figtree({
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
+  weight: "400",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="hu"
-      className={`${figtree.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${figtree.variable} ${merriweather.variable} h-full antialiased`}
     >
       <body className="min-h-full overflow-x-clip bg-cream font-sans text-ink">{children}</body>
     </html>

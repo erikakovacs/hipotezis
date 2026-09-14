@@ -16,15 +16,19 @@ export default function Home() {
   return (
     <DemoProvider>
       <Header />
-      <main className="mx-auto max-w-3xl px-5 sm:px-8">
-        <Hero />
-        <Problems />
-        <Process />
-        <Services />
-        <BeforeAfter />
-        <Offer />
-        <Faq />
-        <ClosingCta />
+      <main>
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Hero />
+        </div>
+        <div>
+          <Problems />
+          <Process />
+          <Services />
+          <BeforeAfter />
+          <Offer />
+          <Faq />
+          <ClosingCta />
+        </div>
       </main>
       <Footer />
       <StickyCta />

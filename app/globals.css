@@ -39,7 +39,7 @@
   --color-rose-mist: var(--rose-mist);
   --color-line: var(--line);
   --font-sans: var(--font-figtree);
-  --font-serif: var(--font-fraunces);
+  --font-serif: var(--font-merriweather);
 }
 
 html {

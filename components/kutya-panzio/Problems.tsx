@@ -7,8 +7,8 @@ const problems = [
 
 export function Problems() {
   return (
-    <section className="border-t border-line/80">
-      <div className="py-16 sm:py-20">
+    <section className="border-t border-line/80 bg-cream-deep/40">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <h2 className="font-serif text-3xl tracking-tight text-ink sm:text-4xl">
           Ismerős?
         </h2>

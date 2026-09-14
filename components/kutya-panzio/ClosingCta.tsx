@@ -1,7 +1,7 @@
 export function ClosingCta() {
   return (
-    <section className="border-t border-line/80">
-      <div className="py-16 sm:py-20">
+    <section className="border-t border-line/80 bg-cream-deep/40">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-ink text-cream">
           <div className="relative px-6 py-12 sm:px-10 sm:py-16">
             <h2 className="font-serif text-3xl leading-tight tracking-tight sm:text-4xl">
