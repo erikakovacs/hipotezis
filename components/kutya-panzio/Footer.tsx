@@ -2,7 +2,7 @@ import { BrandMark } from "@/components/kutya-panzio/BrandMark";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line/80 pb-28">
+    <footer className="relative z-10 border-t border-line/80 bg-cream pb-28">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
         <BrandMark />
         <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">

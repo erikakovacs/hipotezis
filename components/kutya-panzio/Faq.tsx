@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Laptop kell hozzá?",
     answer:
-      "Nem. Telefonról is használhatod: a kertben, a fogadóban, útközben is. Külön programot nem kell telepíteni.",
+      "Nem. Telefonról is használhatod munka közben és útközben is. Külön programot nem kell telepíteni.",
   },
   {
     question: "Kisebb helynek is megéri?",
@@ -43,7 +43,7 @@ const faqs = [
 export function Faq() {
   return (
     <section id="gyik" className="scroll-mt-24 border-t border-line/80">
-      <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
+      <div className="py-16 sm:py-20">
         <h2 className="font-serif text-3xl tracking-tight text-ink sm:text-4xl">
           Gyakori kérdések
         </h2>

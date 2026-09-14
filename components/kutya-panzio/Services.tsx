@@ -39,11 +39,11 @@ const services = [
 export function Services() {
   return (
     <section id="mit-allitok-be" className="scroll-mt-24 border-t border-line/80">
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <div className="py-16 sm:py-20">
         <h2 className="font-serif text-3xl tracking-tight text-ink sm:text-4xl">
-          Mit állítok be neked?
+          Minden, ami megkönnyíti a munkádat
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 space-y-4">
           {services.map((service) => (
             <article
               key={service.title}

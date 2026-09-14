@@ -148,9 +148,9 @@ function DemoDialog({ onClose }: { onClose: () => void }) {
               Köszönöm, hamarosan írok.
             </h2>
             <p className="mt-3 leading-relaxed text-ink-soft">
-              Átnézem, hogyan kezelitek most a jelentkezéseket — panzió,
-              napközi, kiképzés, kozmetika vagy menhely —, és egy rövid
-              üzenetben megmutatom, mit lehetne egy helyre hozni.
+              Átnézem, hogyan kezelitek most a jelentkezéseket, és egy rövid
+              üzenetben megmutatom, mit lehetne egy helyre hozni. Legyen szó
+              panzióról, napköziről, kiképzésről, kozmetikáról vagy menhelyről.
             </p>
             <Button className="mt-8" onClick={onClose}>
               Rendben

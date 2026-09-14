@@ -4,6 +4,7 @@ import { cn } from "@/lib/cn";
 type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "secondary" | "outline";
+  size?: "md" | "header";
   className?: string;
   href?: string;
   onClick?: () => void;
@@ -20,9 +21,16 @@ const variants = {
     "bg-transparent text-ink ring-1 ring-ink/15 hover:bg-paper",
 };
 
+const sizes = {
+  md: "px-5 py-3 text-[0.95rem]",
+  header:
+    "px-2.5 py-1.5 text-[0.7rem] md:px-4 md:py-2.5 md:text-sm",
+};
+
 export function Button({
   children,
   variant = "primary",
+  size = "md",
   className,
   href,
   onClick,
@@ -30,7 +38,8 @@ export function Button({
   disabled,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full px-5 py-3 text-[0.95rem] font-medium tracking-[-0.01em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta disabled:cursor-not-allowed disabled:opacity-60",
+    "inline-flex items-center justify-center rounded-full font-medium tracking-[-0.01em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta disabled:cursor-not-allowed disabled:opacity-60",
+    sizes[size],
     variants[variant],
     className,
   );

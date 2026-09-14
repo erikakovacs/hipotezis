@@ -7,7 +7,7 @@ const tabs = [
   {
     id: "szolgaltatok",
     label: "Szolgáltatók",
-    title: "Egy rendszer a te működésedre",
+    title: "A vállalkozásodra szabott rendszer",
     price: (
       <>
         99&nbsp;000 Ft-tól
@@ -52,7 +52,7 @@ export function Offer() {
 
   return (
     <section id="ajanlat" className="scroll-mt-24 border-t border-line/80 bg-cream-deep/40">
-      <div className="mx-auto max-w-3xl px-5 py-16 text-center sm:px-8 sm:py-20">
+      <div className="py-16 text-center sm:py-20">
         <p className="text-sm font-medium uppercase tracking-[0.16em] text-terracotta">
           Ajánlat
         </p>

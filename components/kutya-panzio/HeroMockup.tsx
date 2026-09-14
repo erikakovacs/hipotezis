@@ -29,8 +29,10 @@ export function HeroMockup() {
         aria-hidden="true"
         className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(91,127,102,0.18),transparent_55%),radial-gradient(circle_at_80%_80%,rgba(184,92,56,0.16),transparent_50%)]"
       />
-      <article className="overflow-hidden rounded-[1.6rem] bg-paper shadow-[0_28px_60px_-28px_rgba(44,36,22,0.35)] ring-1 ring-line">
-        <div className="flex items-start gap-4 p-5 sm:p-6">
+      <details
+        className="group overflow-hidden rounded-[1.6rem] bg-paper shadow-[0_28px_60px_-28px_rgba(44,36,22,0.35)] ring-1 ring-line"
+      >
+        <summary className="flex cursor-pointer list-none items-center gap-4 p-5 sm:p-6">
           <div className="relative h-[4.75rem] w-[4.75rem] shrink-0 overflow-hidden rounded-2xl">
             <Image
               src="/kutya-panzio/bodri.png"
@@ -49,8 +51,23 @@ export function HeroMockup() {
               Dzsoki
             </p>
             <p className="mt-1 text-sm text-ink-soft">Tacskó · 4 éves</p>
+            <p className="mt-2 text-xs font-medium text-terracotta group-open:hidden">
+              Kattints a teljes profil megtekintéséhez
+            </p>
           </div>
-        </div>
+          <svg
+            viewBox="0 0 24 24"
+            className="ml-auto h-5 w-5 shrink-0 -rotate-90 text-ink-soft transition-transform group-open:rotate-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </summary>
 
         <div className="flex flex-wrap gap-2 px-5 pb-3 sm:px-6">
           <span className="inline-flex items-center gap-2 rounded-full bg-sage-mist px-3 py-1.5 text-sm font-medium text-sage-dark">
@@ -197,7 +214,7 @@ export function HeroMockup() {
             value="Barátságos, tacskókkal jól kijön"
           />
         </dl>
-      </article>
+      </details>
     </div>
   );
 }

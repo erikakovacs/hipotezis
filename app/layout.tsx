@@ -16,13 +16,13 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: "Dzsoki — Minden kutya fontos adata egy helyen",
+  title: "Dzsoki | Minden kutya fontos adata egy helyen",
   description:
-    "Személyre szabott jelentkezési és vendégkezelő rendszer kutyapanzióknak, napköziknek, kozmetikáknak és más kutyás szolgáltatóknak. Telefonról is használható, telepítés nélkül.",
+    "Személyre szabott jelentkezési és vendégkezelő rendszer kutyapanzióknak, napköziknek, kutyakozmetikusoknak és menhelyeknek. Telefonról is használható, telepítés nélkül.",
   openGraph: {
-    title: "Dzsoki — Minden kutya fontos adata egy helyen",
+    title: "Dzsoki | Minden kutya fontos adata egy helyen",
     description:
-      "Személyre szabott jelentkezési és vendégkezelő rendszer, hogy ne üzenetekből, cetlikből és külön naptárakból kelljen összeraknod a napodat.",
+      "Személyre szabott jelentkezési és vendégkezelő rendszer, hogy a fontos adatok ne Messenger-üzenetekben, cetliken és külön naptárakban kallódjanak.",
     locale: "hu_HU",
     type: "website",
     images: ["/kutya-panzio/kert.png"],
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="hu"
       className={`${figtree.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full overflow-x-hidden bg-cream font-sans text-ink">{children}</body>
+      <body className="min-h-full overflow-x-clip bg-cream font-sans text-ink">{children}</body>
     </html>
   );
 }

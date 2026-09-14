@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <DemoProvider>
       <Header />
-      <main>
+      <main className="mx-auto max-w-3xl px-5 sm:px-8">
         <Hero />
         <Problems />
         <Process />
