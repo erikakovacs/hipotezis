@@ -9,7 +9,7 @@ export function ClosingCta() {
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-cream/80">
               Ha minden fontos adat egy helyen van, kevesebb idő megy el
-              keresgéléssel és adminisztrációval. Több időd marad a kutyákra.
+              keresgéléssel és adminisztrációval. Több időd marad a kutyusokra.
               Sétára, simogatásra, arra, amiért ezt csinálod.
             </p>
           </div>

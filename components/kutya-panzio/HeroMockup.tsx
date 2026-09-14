@@ -55,7 +55,7 @@ export function HeroMockup() {
           <div className="flex items-center gap-4 p-5 pb-3 sm:px-6 sm:pt-6">
             <div className="relative h-[4.75rem] w-[4.75rem] shrink-0 overflow-hidden rounded-2xl">
               <Image
-                src="/kutya-panzio/bodri.png"
+                src="/kutya-panzio/vendegprofil-dzsoki.png"
                 alt="Dzsoki, egy tacskó"
                 fill
                 sizes="76px"

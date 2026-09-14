@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Figtree, Merriweather } from "next/font/google";
+import { AnalyticsScripts } from "@/components/kutya-panzio/AnalyticsScripts";
+import { CookieBanner } from "@/components/kutya-panzio/CookieBanner";
+import { CookieConsentProvider } from "@/components/kutya-panzio/CookieConsentProvider";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -36,7 +39,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="hu"
       className={`${figtree.variable} ${merriweather.variable} h-full antialiased`}
     >
-      <body className="min-h-full overflow-x-clip bg-cream font-sans text-ink">{children}</body>
+      <body className="min-h-full overflow-x-clip bg-cream font-sans text-ink">
+        <CookieConsentProvider>
+          {children}
+          <CookieBanner />
+          <AnalyticsScripts />
+        </CookieConsentProvider>
+      </body>
     </html>
   );
 }

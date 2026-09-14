@@ -8,12 +8,20 @@ const tabs = [
     id: "szolgaltatok",
     label: "Szolgáltatók",
     title: "A vállalkozásodra szabott rendszer",
-    price: (
-      <>
-        99&nbsp;000 Ft-tól
-      </>
-    ),
-    note: "A pontos ár attól függ, hány szolgáltatást hozol egy helyre. Több ág együtt drágább, mint egyetlen panzió vagy kozmetika.",
+    prices: [
+      {
+        label: "Egy szolgáltatás",
+        amount: "9 900 Ft/hó",
+        comparison: "Kb. 330 Ft/nap",
+      },
+      {
+        label: "Több szolgáltatás",
+        amount: "14 900 Ft/hó",
+        comparison: "Kb. 500 Ft/nap",
+      },
+    ],
+    setupPrice: "49 000 Ft-tól 99 000 Ft-ig",
+    note: "Az egyszeri díj pontos összege a személyre szabás és a beállítások mértékétől függ.",
     includes: [
       "személyre szabott jelentkezési adatlap",
       "akár egy, akár több szolgáltatás egy rendszerben",
@@ -30,7 +38,8 @@ const tabs = [
     id: "menhelyek",
     label: "Menhelyek",
     title: "Egy kész, minimális verzió",
-    price: null,
+    prices: null,
+    setupPrice: null,
     note: "Nem személyre szabott. Egyszer elkészül, és ettől minimális marad.",
     includes: [
       "kutya neve",
@@ -100,10 +109,41 @@ export function Offer() {
           <h2 className="mt-6 font-serif text-3xl tracking-tight text-ink sm:text-4xl">
             {current.title}
           </h2>
-          {current.price ? (
-            <p className="mt-5 font-serif text-4xl tracking-tight text-ink sm:text-5xl">
-              {current.price}
-            </p>
+          {current.prices ? (
+            <div className="mx-auto mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
+              {current.prices.map((price) => (
+                <div
+                  key={price.label}
+                  className="rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:p-6"
+                >
+                  <p className="text-sm font-medium text-ink-soft">
+                    {price.label}
+                  </p>
+                  <p className="mt-2 font-serif text-3xl tracking-tight text-ink">
+                    {price.amount}
+                  </p>
+                  <p className="mt-2 text-sm text-ink-soft">
+                    {price.comparison}
+                  </p>
+                </div>
+              ))}
+              <div className="rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:col-span-2 sm:p-6">
+                <p className="text-sm font-medium text-ink-soft">
+                  Egyszeri személyre szabás és beállítás
+                </p>
+                <p className="mt-2 font-serif text-2xl tracking-tight text-ink sm:text-3xl">
+                  {current.setupPrice}
+                </p>
+              </div>
+              <p className="text-sm leading-relaxed text-ink-soft sm:col-span-2">
+                Ez naponta körülbelül egy kávé ára. 4 000 Ft-os munkaórával
+                számolva már havi 2 óra 30 perc, illetve 3 óra 45 perc
+                megtakarítása fedezi a havidíjat.
+              </p>
+              <p className="text-xs font-medium text-ink-soft sm:col-span-2">
+                Az árak alanyi adómentesek.
+              </p>
+            </div>
           ) : null}
           <ul className="mx-auto mt-8 max-w-md space-y-2.5 text-left">
             {current.includes.map((item) => (

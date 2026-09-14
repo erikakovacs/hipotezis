@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/kutya-panzio/BrandMark";
 
 const links = [
-  { href: "#hogyan-mukodik", label: "Hogyan működik" },
-  { href: "#mit-allitok-be", label: "Funkciók" },
-  { href: "#ajanlat", label: "Ajánlat" },
-  { href: "#gyik", label: "GYIK" },
+  { href: "/#hogyan-mukodik", label: "Hogyan működik" },
+  { href: "/#mit-allitok-be", label: "Funkciók" },
+  { href: "/#ajanlat", label: "Ajánlat" },
+  { href: "/#gyik", label: "GYIK" },
 ];
 
 export function Header() {
@@ -38,22 +39,22 @@ export function Header() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-cream/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-x-6 px-4 py-3 sm:px-8">
-          <a href="#eleje" className="min-w-0 shrink-0" aria-label="Dzsoki, a lap tetejére">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-x-6 px-4 py-2 sm:px-8 sm:py-3">
+          <Link href="/#eleje" className="min-w-0 shrink-0" aria-label="Dzsoki, a lap tetejére">
             <BrandMark priority />
-          </a>
+          </Link>
           <nav
             aria-label="Oldal"
             className="hidden items-center justify-end gap-5 text-nowrap md:flex"
           >
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm font-medium text-ink-soft transition-colors hover:text-ink"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <button
@@ -75,20 +76,20 @@ export function Header() {
           >
             <div className="mx-auto flex max-w-6xl flex-col px-4 py-3 sm:px-8">
               {links.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="border-b border-line/60 py-3 text-base font-medium text-ink last:border-b-0"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </nav>
         ) : null}
       </header>
-      <div className="h-16 sm:h-[4.5rem]" aria-hidden="true" />
+      <div className="h-14 sm:h-[4.5rem]" aria-hidden="true" />
     </>
   );
 }
