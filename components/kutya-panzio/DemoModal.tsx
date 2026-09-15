@@ -10,6 +10,7 @@ import {
 } from "react";
 import { Button } from "@/components/kutya-panzio/Button";
 import { useDemoModal } from "@/components/kutya-panzio/DemoProvider";
+import { submitDemoRequest } from "@/lib/demo-request";
 
 type FormState = {
   name: string;
@@ -93,15 +94,10 @@ function DemoDialog({ onClose }: { onClose: () => void }) {
     setSubmitting(true);
 
     try {
-      const response = await fetch("/api/demo-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = (await response.json()) as { ok?: boolean; error?: string };
+      const result = await submitDemoRequest(form);
 
-      if (!response.ok || !data.ok) {
-        setError(data.error || "Nem sikerült elküldeni. Próbáld meg újra.");
+      if (!result.ok) {
+        setError(result.error);
         return;
       }
 
