@@ -11,7 +11,6 @@ import {
 
 type DemoContextValue = {
   open: boolean;
-  success: boolean;
   openDemo: () => void;
   closeDemo: () => void;
 };
@@ -20,22 +19,12 @@ const DemoContext = createContext<DemoContextValue | null>(null);
 
 export function DemoProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  const [success, setSuccess] = useState(false);
   const openDemo = useCallback(() => setOpen(true), []);
-  const closeDemo = useCallback(() => {
-    setOpen(false);
-    setSuccess(false);
-  }, []);
+  const closeDemo = useCallback(() => setOpen(false), []);
 
   return (
-    <DemoContext.Provider value={{ open, success, openDemo, closeDemo }}>
+    <DemoContext.Provider value={{ open, openDemo, closeDemo }}>
       <HashOpener />
-      <SuccessRedirectOpener
-        onOpen={() => {
-          setSuccess(true);
-          setOpen(true);
-        }}
-      />
       {children}
     </DemoContext.Provider>
   );
@@ -49,21 +38,6 @@ function HashOpener() {
       openDemo();
     }
   }, [openDemo]);
-
-  return null;
-}
-
-function SuccessRedirectOpener({ onOpen }: { onOpen: () => void }) {
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("demo") !== "siker") return;
-
-    onOpen();
-    params.delete("demo");
-    const query = params.toString();
-    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
-    window.history.replaceState({}, "", nextUrl);
-  }, [onOpen]);
 
   return null;
 }

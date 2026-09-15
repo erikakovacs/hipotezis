@@ -10,12 +10,7 @@ import {
 } from "react";
 import { Button } from "@/components/kutya-panzio/Button";
 import { useDemoModal } from "@/components/kutya-panzio/DemoProvider";
-import {
-  buildDemoFormSubject,
-  DEMO_FORM_ACTION,
-  DEMO_FORM_SUCCESS_URL,
-  validateDemoRequest,
-} from "@/lib/demo-request";
+import { submitDemoRequest } from "@/lib/demo-request";
 
 type FormState = {
   name: string;
@@ -34,26 +29,19 @@ const emptyForm: FormState = {
 };
 
 export function DemoModal() {
-  const { open, success, closeDemo } = useDemoModal();
+  const { open, closeDemo } = useDemoModal();
   if (!open) return null;
-  return <DemoDialog onClose={closeDemo} success={success} />;
+  return <DemoDialog onClose={closeDemo} />;
 }
 
-function DemoDialog({
-  onClose,
-  success,
-}: {
-  onClose: () => void;
-  success: boolean;
-}) {
+function DemoDialog({ onClose }: { onClose: () => void }) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
-  const subjectRef = useRef<HTMLInputElement>(null);
-  const sentAtRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<FormState>(emptyForm);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -100,24 +88,25 @@ function DemoDialog({
     setForm((current) => ({ ...current, [key]: value }));
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setError(null);
-
-    const validationError = validateDemoRequest(form);
-    if (validationError) {
-      event.preventDefault();
-      setError(validationError);
-      return;
-    }
-
-    if (subjectRef.current) {
-      subjectRef.current.value = buildDemoFormSubject(form.business);
-    }
-    if (sentAtRef.current) {
-      sentAtRef.current.value = new Date().toISOString();
-    }
-
     setSubmitting(true);
+
+    try {
+      const result = await submitDemoRequest(form);
+
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+
+      setSuccess(true);
+    } catch {
+      setError("Hálózati hiba. Próbáld meg újra néhány perc múlva.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -176,20 +165,9 @@ function DemoDialog({
               szolgáltatásotok is van, azt is írd ide, és megmutatom, mit
               lehetne egy helyre hozni.
             </p>
-            <form
-              action={DEMO_FORM_ACTION}
-              method="POST"
-              className="mt-5 space-y-3 sm:mt-6 sm:space-y-4"
-              onSubmit={onSubmit}
-            >
-              <input type="hidden" name="_next" value={DEMO_FORM_SUCCESS_URL} />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input ref={subjectRef} type="hidden" name="_subject" defaultValue="" />
-              <input ref={sentAtRef} type="hidden" name="Beküldve" defaultValue="" />
+            <form className="mt-5 space-y-3 sm:mt-6 sm:space-y-4" onSubmit={onSubmit}>
               <Field
                 ref={firstFieldRef}
-                name="Név"
                 label="Neved"
                 value={form.name}
                 onChange={(value) => update("name", value)}
@@ -197,7 +175,6 @@ function DemoDialog({
                 required
               />
               <Field
-                name="Vállalkozás"
                 label="Üzleted neve"
                 value={form.business}
                 onChange={(value) => update("business", value)}
@@ -205,7 +182,6 @@ function DemoDialog({
                 required
               />
               <Field
-                name="email"
                 label="Email"
                 type="email"
                 value={form.email}
@@ -214,7 +190,6 @@ function DemoDialog({
                 required
               />
               <Field
-                name="Telefon"
                 label="Telefon"
                 type="tel"
                 value={form.phone}
@@ -227,7 +202,6 @@ function DemoDialog({
                   Hogyan kezelitek most a jelentkezéseket?
                 </span>
                 <textarea
-                  name="Jelenlegi jelentkezési folyamat"
                   value={form.currentProcess}
                   onChange={(event) =>
                     update("currentProcess", event.target.value)
@@ -255,7 +229,6 @@ function DemoDialog({
 }
 
 type FieldProps = {
-  name: string;
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -266,7 +239,6 @@ type FieldProps = {
 };
 
 function Field({
-  name,
   label,
   value,
   onChange,
@@ -280,7 +252,6 @@ function Field({
       <span className="text-sm font-medium text-ink">{label}</span>
       <input
         ref={ref}
-        name={name}
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
