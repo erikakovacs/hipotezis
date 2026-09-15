@@ -1,4 +1,5 @@
 import { About } from "@/components/kutya-panzio/About";
+import { StructuredData } from "@/components/kutya-panzio/StructuredData";
 import { BeforeAfter } from "@/components/kutya-panzio/BeforeAfter";
 import { ClosingCta } from "@/components/kutya-panzio/ClosingCta";
 import { DemoModal } from "@/components/kutya-panzio/DemoModal";
@@ -16,6 +17,7 @@ import { StickyCta } from "@/components/kutya-panzio/StickyCta";
 export default function Home() {
   return (
     <DemoProvider>
+      <StructuredData />
       <Header />
       <main>
         <div className="mx-auto max-w-6xl px-5 sm:px-8">

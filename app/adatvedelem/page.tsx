@@ -6,9 +6,22 @@ import { Header } from "@/components/kutya-panzio/Header";
 import { privacyConfig } from "@/lib/privacy";
 
 export const metadata: Metadata = {
-  title: "Dzsoki | Adatvédelem",
+  title: "Adatvédelem",
   description:
     "Adatvédelmi tájékoztató a Dzsoki weboldalhoz: adatkezelő, cookie-k, analitika, demo űrlap és érintetti jogok.",
+  alternates: {
+    canonical: "/adatvedelem",
+  },
+  openGraph: {
+    title: "Adatvédelem | Dzsoki",
+    description:
+      "Adatvédelmi tájékoztató a Dzsoki weboldalhoz: adatkezelő, cookie-k, analitika, demo űrlap és érintetti jogok.",
+    url: "/adatvedelem",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 function Section({
