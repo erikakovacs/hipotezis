@@ -25,6 +25,10 @@ const sections = [
     body: "A sütiket két kategóriába soroljuk: szükséges és marketing. A szükséges sütik a weboldal alapvető működéséhez kellenek. A marketing sütik csak hozzájárulás után aktiválódnak.",
   },
   {
+    title: "Simple Analytics",
+    body: "A weboldal látogatottságát a cookie-kat nem használó Simple Analytics szolgáltatással mérjük. A szolgáltatás nem követi a látogatókat különböző weboldalakon, és nem készít személyes profilt.",
+  },
+  {
     title: "Facebook Pixel",
     body: `Marketing célú méréshez Facebook Pixel szolgáltatást használunk. Azonosító: ${FB_PIXEL_ID}.`,
   },
