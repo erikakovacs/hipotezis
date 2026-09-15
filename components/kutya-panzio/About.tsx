@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function About() {
   return (
     <section id="rolunk" className="scroll-mt-24 border-t border-line/80">
@@ -11,11 +13,14 @@ export function About() {
 
         <div className="mt-10 grid items-center gap-10 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-14">
           <div className="relative mx-auto w-full max-w-sm lg:mx-0">
-            <div className="flex aspect-[4/5] items-center justify-center rounded-[1.6rem] bg-cream-deep ring-1 ring-line">
-              <p className="px-6 text-center text-sm leading-relaxed text-ink-soft">
-                Dzsoki fotója
-                <span className="mt-1 block text-xs">Hamarosan</span>
-              </p>
+            <div className="relative aspect-square overflow-hidden rounded-[1.6rem] bg-cream-deep ring-1 ring-line">
+              <Image
+                src="/kutya-panzio/vendegprofil-dzsoki.png"
+                alt="Dzsoki, az öt éves tacskó"
+                fill
+                sizes="(min-width: 1024px) 352px, (min-width: 640px) 384px, calc(100vw - 40px)"
+                className="object-cover"
+              />
             </div>
           </div>
 
