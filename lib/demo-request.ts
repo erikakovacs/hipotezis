@@ -36,6 +36,10 @@ export function validateDemoRequest(form: DemoRequestForm): string | null {
     return "Kérlek, adj meg egy érvényes email címet.";
   }
 
+  if (phone.replace(/\D/g, "").length < 8) {
+    return "Kérlek, add meg a telefonszámod.";
+  }
+
   if (currentProcess.length < 8) {
     return "Írj néhány szót a jelenlegi folyamatotokról.";
   }
@@ -80,7 +84,7 @@ export async function submitDemoRequest(
         Név: name,
         Vállalkozás: business,
         email,
-        Telefon: phone || "Nincs megadva",
+        Telefon: phone,
         "Jelenlegi jelentkezési folyamat": currentProcess,
         Beküldve: new Date().toISOString(),
       }),

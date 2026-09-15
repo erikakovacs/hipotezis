@@ -141,7 +141,7 @@ function DemoDialog({ onClose }: { onClose: () => void }) {
               id={titleId}
               className="mt-3 font-serif text-3xl tracking-tight text-ink"
             >
-              Köszönöm, hamarosan írok.
+              Köszönöm, hamarosan jelentkezem.
             </h2>
             <p className="mt-3 leading-relaxed text-ink-soft">
               Átnézem, hogyan kezelitek most a jelentkezéseket, és egy rövid
@@ -190,11 +190,12 @@ function DemoDialog({ onClose }: { onClose: () => void }) {
                 required
               />
               <Field
-                label="Telefon (opcionális)"
+                label="Telefon"
                 type="tel"
                 value={form.phone}
                 onChange={(value) => update("phone", value)}
                 autoComplete="tel"
+                required
               />
               <label className="block text-left">
                 <span className="text-sm font-medium text-ink">
