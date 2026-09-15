@@ -3,11 +3,7 @@ import Link from "next/link";
 import { CookieSettingsButton } from "@/components/kutya-panzio/CookieSettingsButton";
 import { Footer } from "@/components/kutya-panzio/Footer";
 import { Header } from "@/components/kutya-panzio/Header";
-import {
-  FB_PIXEL_ID,
-  GA_MEASUREMENT_ID,
-  HOTJAR_SITE_ID,
-} from "@/lib/analytics-ids";
+import { FB_PIXEL_ID } from "@/lib/analytics-ids";
 
 export const metadata: Metadata = {
   title: "Dzsoki | Adatvédelem",
@@ -26,15 +22,7 @@ const sections = [
   },
   {
     title: "Cookie-kategóriák",
-    body: "A sütiket három kategóriába soroljuk: szükséges, analitika és marketing. A szükséges sütik a weboldal alapvető működéséhez kellenek. Az analitika és marketing sütik csak hozzájárulás után aktiválódnak.",
-  },
-  {
-    title: "Google Analytics",
-    body: `A látogatottság mérésére Google Analytics szolgáltatást használunk. Azonosító: ${GA_MEASUREMENT_ID}.`,
-  },
-  {
-    title: "Hotjar",
-    body: `A felhasználói élmény javításához Hotjar eszközt használunk. Azonosító: ${HOTJAR_SITE_ID}.`,
+    body: "A sütiket két kategóriába soroljuk: szükséges és marketing. A szükséges sütik a weboldal alapvető működéséhez kellenek. A marketing sütik csak hozzájárulás után aktiválódnak.",
   },
   {
     title: "Facebook Pixel",

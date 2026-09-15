@@ -1,8 +1,2 @@
-export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-XXXXXXXXXX";
-
 export const FB_PIXEL_ID =
   process.env.NEXT_PUBLIC_FB_PIXEL_ID ?? "XXXXXXXXXXXXXXXX";
-
-export const HOTJAR_SITE_ID =
-  process.env.NEXT_PUBLIC_HOTJAR_SITE_ID ?? "0000000";

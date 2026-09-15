@@ -1,10 +1,10 @@
-export type CookieCategory = "necessary" | "analytics" | "marketing";
+export type CookieCategory = "necessary" | "marketing";
 
 export type CookieConsent = Record<CookieCategory, boolean>;
 
 export const COOKIE_CONSENT_STORAGE_KEY = "dzsoki-cookie-consent";
 
-export const COOKIE_CONSENT_VERSION = 1;
+export const COOKIE_CONSENT_VERSION = 2;
 
 export type StoredCookieConsent = {
   version: number;
@@ -13,13 +13,11 @@ export type StoredCookieConsent = {
 
 export const defaultCookieConsent: CookieConsent = {
   necessary: true,
-  analytics: false,
   marketing: false,
 };
 
 export const acceptAllCookieConsent: CookieConsent = {
   necessary: true,
-  analytics: true,
   marketing: true,
 };
 
@@ -35,12 +33,6 @@ export const cookieCategories: {
     description:
       "Ezek a sütik a weboldal alapvető működéséhez kellenek, például a cookie-beállítások megjegyzéséhez.",
     required: true,
-  },
-  {
-    id: "analytics",
-    title: "Analitika",
-    description:
-      "Segítenek megérteni, hogyan használják a látogatók az oldalt. Google Analytics és Hotjar.",
   },
   {
     id: "marketing",

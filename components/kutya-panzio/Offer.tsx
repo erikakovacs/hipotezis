@@ -135,11 +135,6 @@ export function Offer() {
                   {current.setupPrice}
                 </p>
               </div>
-              <p className="text-sm leading-relaxed text-ink-soft sm:col-span-2">
-                Ez naponta körülbelül egy kávé ára. 4 000 Ft-os munkaórával
-                számolva már havi 2 óra 30 perc, illetve 3 óra 45 perc
-                megtakarítása fedezi a havidíjat.
-              </p>
               <p className="text-xs font-medium text-ink-soft sm:col-span-2">
                 Az árak alanyi adómentesek.
               </p>

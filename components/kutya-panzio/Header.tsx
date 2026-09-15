@@ -8,6 +8,7 @@ const links = [
   { href: "/#hogyan-mukodik", label: "Hogyan működik" },
   { href: "/#mit-allitok-be", label: "Funkciók" },
   { href: "/#ajanlat", label: "Ajánlat" },
+  { href: "/#rolunk", label: "Rólunk" },
   { href: "/#gyik", label: "GYIK" },
 ];
 

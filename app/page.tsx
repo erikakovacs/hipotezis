@@ -1,3 +1,4 @@
+import { About } from "@/components/kutya-panzio/About";
 import { BeforeAfter } from "@/components/kutya-panzio/BeforeAfter";
 import { ClosingCta } from "@/components/kutya-panzio/ClosingCta";
 import { DemoModal } from "@/components/kutya-panzio/DemoModal";
@@ -27,6 +28,7 @@ export default function Home() {
           <BeforeAfter />
           <Offer />
           <Faq />
+          <About />
           <ClosingCta />
         </div>
       </main>

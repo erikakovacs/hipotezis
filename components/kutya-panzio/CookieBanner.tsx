@@ -66,8 +66,8 @@ export function CookieBanner() {
                 id="cookie-banner-description"
                 className="mt-2 text-sm leading-relaxed text-ink-soft"
               >
-                A weboldal működéséhez szükséges, statisztikai és marketing
-                sütiket használunk. A beállításokat bármikor módosíthatod az{" "}
+                A weboldal működéséhez szükséges és marketing sütiket
+                használunk. A beállításokat bármikor módosíthatod az{" "}
                 <Link href="/adatvedelem" className="text-terracotta underline">
                   adatvédelmi oldalon
                 </Link>
