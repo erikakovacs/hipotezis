@@ -26,6 +26,11 @@ export function About() {
               lakunk nála.
             </p>
             <p>
+              A nevét Jockey Ewingról, a Dallas című sorozat egyik
+              szereplőjéről kapta. A név illett hozzá, mert már kölyökként is
+              úgy viselkedett, mintha az egész birtok az övé lenne.
+            </p>
+            <p>
               A nevét naponta tízezerszer kimondjuk. „Dzsoki, gyere!” „Dzsoki,
               az nem a tiéd!” „Dzsoki, mit eszel?” Ő pedig minden alkalommal
               ránk néz azokkal a nagy, ártatlan szemeivel, mintha életében
