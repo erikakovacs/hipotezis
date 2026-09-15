@@ -1,13 +1,13 @@
+import { DoodlePattern } from "@/components/kutya-panzio/DoodlePattern";
+
 const services = [
   {
     title: "Online jelentkezési adatlap",
     items: [
       "gazdi adatai",
       "kutya adatai",
-      "oltások",
-      "étkezés",
-      "gyógyszerek",
-      "viselkedés",
+      "oltások és gyógyszerek",
+      "étkezés és viselkedés",
       "egyedi kérdések",
     ],
   },
@@ -28,11 +28,8 @@ const services = [
       "foglalás megerősítése",
       "érkezés előtti tudnivalók",
       "emlékeztetők",
+      "visszatérő vendégek megszólítása",
     ],
-  },
-  {
-    title: "Utókövetés",
-    items: ["Google értékeléskérés", "visszatérő vendégek megszólítása"],
   },
 ];
 
@@ -40,27 +37,31 @@ export function Services() {
   return (
     <section
       id="mit-allitok-be"
-      className="scroll-mt-24 border-t border-line/80 bg-cream-deep/40"
+      className="relative scroll-mt-24 overflow-hidden border-t border-line/80 bg-cream-deep/40"
     >
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <DoodlePattern variant="services" />
+      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <h2 className="font-serif text-3xl tracking-tight text-ink sm:text-4xl">
           Minden, ami megkönnyíti a munkádat
         </h2>
-        <div className="mt-10 space-y-4">
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:items-stretch">
           {services.map((service) => (
             <article
               key={service.title}
-              className="rounded-[1.4rem] bg-paper p-6 shadow-[0_16px_40px_-28px_rgba(44,36,22,0.28)] ring-1 ring-line sm:p-7"
+              className="flex h-full flex-col rounded-[1.25rem] bg-paper p-4 shadow-[0_12px_32px_-24px_rgba(44,36,22,0.24)] ring-1 ring-line sm:p-5"
             >
-              <h3 className="font-serif text-2xl tracking-tight text-ink">
+              <h3 className="font-serif text-lg leading-snug tracking-tight text-ink sm:text-xl">
                 {service.title}
               </h3>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-3 space-y-1.5">
                 {service.items.map((item) => (
-                  <li key={item} className="flex gap-2.5 text-ink-soft">
+                  <li
+                    key={item}
+                    className="flex gap-2 text-sm leading-snug text-ink-soft"
+                  >
                     <span
                       aria-hidden="true"
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta/80"
+                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta/80"
                     />
                     <span>{item}</span>
                   </li>

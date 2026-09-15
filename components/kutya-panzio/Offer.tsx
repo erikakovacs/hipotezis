@@ -38,7 +38,13 @@ const tabs = [
     id: "menhelyek",
     label: "Menhelyek",
     title: "Egy kész, minimális verzió",
-    prices: null,
+    prices: [
+      {
+        label: "Menhelyverzió",
+        amount: "Ingyenes",
+        comparison: "Nincs havi díj, nincs beállítási díj",
+      },
+    ],
     setupPrice: null,
     note: "Nem személyre szabott. Egyszer elkészül, és ettől minimális marad.",
     includes: [
@@ -114,7 +120,10 @@ export function Offer() {
               {current.prices.map((price) => (
                 <div
                   key={price.label}
-                  className="rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:p-6"
+                  className={cn(
+                    "rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:p-6",
+                    current.prices.length === 1 && "sm:col-span-2",
+                  )}
                 >
                   <p className="text-sm font-medium text-ink-soft">
                     {price.label}
@@ -127,17 +136,21 @@ export function Offer() {
                   </p>
                 </div>
               ))}
-              <div className="rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:col-span-2 sm:p-6">
-                <p className="text-sm font-medium text-ink-soft">
-                  Egyszeri személyre szabás és beállítás
+              {current.setupPrice ? (
+                <div className="rounded-[1.35rem] bg-paper p-5 ring-1 ring-line sm:col-span-2 sm:p-6">
+                  <p className="text-sm font-medium text-ink-soft">
+                    Egyszeri személyre szabás és beállítás
+                  </p>
+                  <p className="mt-2 font-serif text-2xl tracking-tight text-ink sm:text-3xl">
+                    {current.setupPrice}
+                  </p>
+                </div>
+              ) : null}
+              {current.setupPrice ? (
+                <p className="text-xs font-medium text-ink-soft sm:col-span-2">
+                  Az árak alanyi adómentesek.
                 </p>
-                <p className="mt-2 font-serif text-2xl tracking-tight text-ink sm:text-3xl">
-                  {current.setupPrice}
-                </p>
-              </div>
-              <p className="text-xs font-medium text-ink-soft sm:col-span-2">
-                Az árak alanyi adómentesek.
-              </p>
+              ) : null}
             </div>
           ) : null}
           <ul className="mx-auto mt-8 max-w-md space-y-2.5 text-left">
