@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+const RECIPIENT_EMAIL = "ms.kovacs.erika@gmail.com";
+const FORMSUBMIT_API_URL = `https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`;
+
 type DemoRequestBody = {
   name?: unknown;
   business?: unknown;
@@ -14,6 +17,10 @@ function asTrimmedString(value: unknown) {
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isTooLong(value: string, maxLength: number) {
+  return value.length > maxLength;
 }
 
 export async function POST(request: Request) {
@@ -62,6 +69,19 @@ export async function POST(request: Request) {
     );
   }
 
+  if (
+    isTooLong(name, 100) ||
+    isTooLong(business, 150) ||
+    isTooLong(email, 254) ||
+    isTooLong(phone, 50) ||
+    isTooLong(currentProcess, 3000)
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "Az egyik mező túl hosszú." },
+      { status: 400 },
+    );
+  }
+
   const payload = {
     name,
     business,
@@ -71,7 +91,49 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
   };
 
-  console.info("[demo-request]", payload);
+  try {
+    const response = await fetch(FORMSUBMIT_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _subject: `Új Dzsoki bemutatókérés: ${business.replace(/[\r\n]/g, " ")}`,
+        _template: "table",
+        Név: name,
+        Vállalkozás: business,
+        email,
+        Telefon: phone || "Nincs megadva",
+        "Jelenlegi jelentkezési folyamat": currentProcess,
+        Beküldve: payload.receivedAt,
+      }),
+    });
+
+    if (!response.ok) {
+      const details = await response.text();
+      console.error("[demo-request] Sikertelen FormSubmit küldés.", {
+        status: response.status,
+        details,
+      });
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Nem sikerült elküldeni. Próbáld meg később.",
+        },
+        { status: 502 },
+      );
+    }
+  } catch (error) {
+    console.error("[demo-request] Emailküldési hiba.", error);
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Nem sikerült elküldeni. Próbáld meg később.",
+      },
+      { status: 502 },
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }
