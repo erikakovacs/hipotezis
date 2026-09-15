@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { Button } from "@/components/kutya-panzio/Button";
 import { useCookieConsent } from "@/components/kutya-panzio/CookieConsentProvider";
-import {
-  cookieCategories,
-  defaultCookieConsent,
-  type CookieConsent,
-} from "@/lib/cookie-consent";
-import { cn } from "@/lib/cn";
+import { cookieCategories } from "@/lib/cookie-consent";
 
 export function CookieBanner() {
   const {
@@ -17,15 +11,10 @@ export function CookieBanner() {
     hasResponded,
     showDetails,
     acceptAll,
-    savePreferences,
     openDetails,
     closeDetails,
-    consent,
   } = useCookieConsent();
-  const [draft, setDraft] = useState<CookieConsent>(consent);
-
   const handleOpenDetails = () => {
-    setDraft(consent);
     openDetails();
   };
 
@@ -66,8 +55,8 @@ export function CookieBanner() {
                 id="cookie-banner-description"
                 className="mt-2 text-sm leading-relaxed text-ink-soft"
               >
-                A weboldal működéséhez szükséges és marketing sütiket
-                használunk. A beállításokat bármikor módosíthatod az{" "}
+                A weboldal működéséhez szükséges technológiákat használunk.
+                A beállításokat bármikor módosíthatod az{" "}
                 <Link href="/adatvedelem" className="text-terracotta underline">
                   adatvédelmi oldalon
                 </Link>
@@ -79,7 +68,7 @@ export function CookieBanner() {
                 Részletek
               </Button>
               <Button size="md" onClick={acceptAll}>
-                Mindent elfogad
+                Elfogadom
               </Button>
             </div>
           </div>
@@ -91,11 +80,11 @@ export function CookieBanner() {
                   Cookie-beállítások
                 </p>
                 <p className="mt-2 font-serif text-2xl tracking-tight text-ink">
-                  Válaszd ki a kategóriákat
+                  Milyen technológiákat használunk
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                  Válaszd ki, mely kategóriákat engedélyezed. A szükséges
-                  sütik mindig aktívak maradnak.
+                  Csak szükséges technológiákat használunk, amelyek a
+                  weboldal alapvető működéséhez kellenek.
                 </p>
               </div>
               <button
@@ -108,37 +97,17 @@ export function CookieBanner() {
             </div>
 
             <ul className="mt-5 space-y-3">
-              {cookieCategories.map((category) => {
-                const enabled = category.required
-                  ? true
-                  : draft[category.id];
-
-                return (
-                  <li
-                    key={category.id}
-                    className="rounded-[1.25rem] bg-paper p-4 ring-1 ring-line sm:p-5"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="font-medium text-ink">{category.title}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-ink-soft">
-                          {category.description}
-                        </p>
-                      </div>
-                      <Toggle
-                        checked={enabled}
-                        disabled={category.required}
-                        onChange={(checked) =>
-                          setDraft((current) => ({
-                            ...current,
-                            [category.id]: checked,
-                          }))
-                        }
-                      />
-                    </div>
-                  </li>
-                );
-              })}
+              {cookieCategories.map((category) => (
+                <li
+                  key={category.id}
+                  className="rounded-[1.25rem] bg-paper p-4 ring-1 ring-line sm:p-5"
+                >
+                  <p className="font-medium text-ink">{category.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+                    {category.description}
+                  </p>
+                </li>
+              ))}
             </ul>
 
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
@@ -148,58 +117,14 @@ export function CookieBanner() {
               >
                 Adatvédelmi tájékoztató
               </Link>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant="outline"
-                  size="md"
-                  onClick={() => savePreferences(defaultCookieConsent)}
-                >
-                  Csak a szükséges
-                </Button>
-                <Button size="md" onClick={() => savePreferences(draft)}>
-                  Választás mentése
-                </Button>
-                <Button size="md" onClick={acceptAll}>
-                  Mindent elfogad
-                </Button>
-              </div>
+              <Button size="md" onClick={acceptAll}>
+                Elfogadom
+              </Button>
             </div>
           </div>
         )}
         </div>
       </div>
     </div>
-  );
-}
-
-function Toggle({
-  checked,
-  disabled,
-  onChange,
-}: {
-  checked: boolean;
-  disabled?: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      disabled={disabled}
-      onClick={() => onChange(!checked)}
-      className={cn(
-        "relative h-7 w-12 shrink-0 rounded-full transition-colors disabled:cursor-not-allowed",
-        checked ? "bg-sage" : "bg-line",
-        disabled && "opacity-70",
-      )}
-    >
-      <span
-        className={cn(
-          "absolute top-0.5 left-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform",
-          checked && "translate-x-5",
-        )}
-      />
-    </button>
   );
 }

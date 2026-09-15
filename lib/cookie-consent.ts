@@ -1,10 +1,10 @@
-export type CookieCategory = "necessary" | "marketing";
+export type CookieCategory = "necessary";
 
 export type CookieConsent = Record<CookieCategory, boolean>;
 
 export const COOKIE_CONSENT_STORAGE_KEY = "dzsoki-cookie-consent";
 
-export const COOKIE_CONSENT_VERSION = 2;
+export const COOKIE_CONSENT_VERSION = 3;
 
 export type StoredCookieConsent = {
   version: number;
@@ -13,12 +13,10 @@ export type StoredCookieConsent = {
 
 export const defaultCookieConsent: CookieConsent = {
   necessary: true,
-  marketing: false,
 };
 
 export const acceptAllCookieConsent: CookieConsent = {
   necessary: true,
-  marketing: true,
 };
 
 export const cookieCategories: {
@@ -31,14 +29,8 @@ export const cookieCategories: {
     id: "necessary",
     title: "Szükséges",
     description:
-      "Ezek a sütik a weboldal alapvető működéséhez kellenek, például a cookie-beállítások megjegyzéséhez.",
+      "Ezek a technológiák a weboldal alapvető működéséhez kellenek, például a cookie-beállítások megjegyzéséhez.",
     required: true,
-  },
-  {
-    id: "marketing",
-    title: "Marketing",
-    description:
-      "A hirdetések méréséhez és remarketinghez használjuk. Facebook Pixel.",
   },
 ];
 

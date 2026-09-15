@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Figtree, Merriweather } from "next/font/google";
 import Script from "next/script";
-import { AnalyticsScripts } from "@/components/kutya-panzio/AnalyticsScripts";
 import { CookieBanner } from "@/components/kutya-panzio/CookieBanner";
 import { CookieConsentProvider } from "@/components/kutya-panzio/CookieConsentProvider";
 import "./globals.css";
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CookieConsentProvider>
           {children}
           <CookieBanner />
-          <AnalyticsScripts />
         </CookieConsentProvider>
         <Script
           src="https://scripts.simpleanalyticscdn.com/latest.js"
